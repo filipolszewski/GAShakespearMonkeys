@@ -1,4 +1,10 @@
-
+/**
+ * 
+ * @author Filip
+ *
+ *         Object containing the information about the generation of elements
+ *         including the element with the best fitness
+ */
 public class GenerationData {
 
 	private Integer populationNumber;

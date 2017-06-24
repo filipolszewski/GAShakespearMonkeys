@@ -1,5 +1,12 @@
 import java.util.Random;
 
+/**
+ * 
+ * @author Filip
+ *
+ *         Single element of the whole population.
+ *
+ */
 public class Element {
 
 	private char[] dna;
@@ -7,12 +14,20 @@ public class Element {
 	private Integer elementSize;
 	private Integer fitness;
 
+	/**
+	 * The only constructor for Element. Generates instance with randomized DNA.
+	 * 
+	 * @param elementSize
+	 */
 	public Element(Integer elementSize) {
 		this.elementSize = elementSize;
 		dna = new char[elementSize];
 		generateDna();
 	}
 
+	/**
+	 * Generating random DNA based on the alphabet constant.
+	 */
 	private void generateDna() {
 		Random r = new Random();
 		for (int i = 0; i < elementSize; i++) {
@@ -20,7 +35,13 @@ public class Element {
 		}
 	}
 
-
+	/**
+	 * Basic linear fitness calculation
+	 * 
+	 * @param target
+	 *            Target string. The maximal fitness is returned if DNA is equal
+	 *            in characters to the target string.
+	 */
 	public void calculateFitness(String target) {
 		fitness = 1;
 		for (int i = 0; i < target.length(); i++) {
@@ -55,7 +76,16 @@ public class Element {
 		this.fitness = fitness;
 	}
 
-	public Element haveSexWith(Element parentB) {
+	/**
+	 * Performs a two-elements crossover, statistically taking half of the
+	 * objects DNA and half of the second elements DNA.
+	 * 
+	 * @param parentB
+	 *            Second element that takes part in the crossover process.
+	 * @return child Element
+	 */
+
+	public Element crossoverWith(Element parentB) {
 		Element child = new Element(elementSize);
 		char[] crossoverDna = new char[elementSize];
 		Random r = new Random();
@@ -71,6 +101,10 @@ public class Element {
 		return child;
 	}
 
+	/**
+	 * Performs elements mutation by changing one DNA's char to a new, random
+	 * one.
+	 */
 	public void mutate() {
 		Random r = new Random();
 		dna[r.nextInt(elementSize)] = alphabet.charAt(r.nextInt(alphabet.length()));

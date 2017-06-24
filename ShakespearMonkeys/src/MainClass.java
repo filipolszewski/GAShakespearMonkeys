@@ -1,6 +1,13 @@
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+/**
+ * 
+ * @author Filip Olszewski
+ *
+ *         Main Class launches the genetic algorithm by initializing the
+ *         MainWindow instance and starting it.
+ */
 public class MainClass {
 
 	public static void main(String[] args) {
@@ -15,6 +22,7 @@ public class MainClass {
 			@Override
 			public void run() {
 				MainWindow mainWindow = new MainWindow();
+				mainWindow.start();
 			}
 		});
 	}

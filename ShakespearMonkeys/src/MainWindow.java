@@ -11,7 +11,7 @@ import javax.swing.border.EmptyBorder;
 public class MainWindow extends JFrame implements ControllerListener {
 
 	private static final String TITLE = "Genetic Algorithm - Shakespear Monkeys";
-	private GeneticAlgorhitmController controller;
+	private GeneticAlgorhitmPerformer controller;
 	private static final Font font = new Font("Verdana", Font.BOLD, 12);
 	private JLabel bestElementLabel;
 	private JLabel generationLabel;
@@ -19,15 +19,13 @@ public class MainWindow extends JFrame implements ControllerListener {
 	private JLabel mutationRateLabel;
 
 	public MainWindow() {
-
-		controller = new GeneticAlgorhitmController(this);
+		controller = new GeneticAlgorhitmPerformer(this);
 		configureWindow();
 		createComponents();
-		setVisible(true);
-		start();
 	}
 
 	public void start() {
+		setVisible(true);
 		Thread thread = new Thread(new Runnable() {
 			
 			@Override
