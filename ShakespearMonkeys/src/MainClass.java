@@ -7,6 +7,10 @@ import javax.swing.UIManager;
  *
  *         Main Class launches the genetic algorithm by initializing the
  *         MainWindow instance and starting it.
+ * 
+ *         This is a first, basic project covering the genetic algorithms field
+ *         to introduce the basic code construction, and to observe how the
+ *         behaviour of population changes based on some parameters.
  */
 public class MainClass {
 
