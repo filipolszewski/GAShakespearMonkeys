@@ -77,31 +77,40 @@ public class Population {
 	private List<Element> createMatingPool() {
 		List<Element> matingPool = new ArrayList<>();
 		for (int i = 0; i < size; i++) {
-			matingPool.add(getElementFromNaturalSelection());
+			matingPool.add(pickElement());
 		}
 		return matingPool;
 	}
 
 	/**
 	 * Returns an element from population with a statistical distribution
-	 * imitating the natural selection process. This method is using an
+	 * imitating the natural selection process.
+	 * 
+	 * There are couple of ways of programming that method. One is using an
 	 * accept-reject algorithm where it picks random element, but accepts it
-	 * with a chance based on its fitness.
+	 * with a chance based on its fitness. (Used earlier in this project)
+	 * 
+	 * Currently this method is using a faster algorithm. It calculates the sum
+	 * of fitnesses, picks a random number from <0, maxFitness> and starts
+	 * adding up values(fitness values of elements) to this number until it gets
+	 * higher than maxFitness - it returns an element that was currently in the
+	 * loop.
 	 * 
 	 * @return
 	 */
-	private Element getElementFromNaturalSelection() {
+	private Element pickElement() {
+		Integer maxFitness = calculateFitnessSum();
 		Random r = new Random();
-		while (true) {
-			Integer index = r.nextInt(size); 
-			Integer random = r.nextInt(elementSize); // ElementSize == Max
-														// possible fitness
-			Element element = elements.get(index);
-			if (random < element.getFitness()) {
+		Integer point = r.nextInt(maxFitness);
+		for (int i = 0; i < size; i++) {
+			Element element = elements.get(i);
+			point += element.getFitness();
+			if (point >= maxFitness) {
 				return element;
 			}
 		}
-
+		System.out.println("Error - No element picked!");
+		return null;
 	}
 
 	/**

@@ -12,7 +12,7 @@ public class GeneticAlgorhitmPerformer {
 	private static final String TARGET = "To be or not to be";
 	private static final Integer populationSize = 1000;
 	private static final Integer elementSize = TARGET.length();
-	private static final double mutationRate = 0.01;
+	private static final double mutationRate = 0.02;
 	private GenerationData genData;
 	private ControllerListener listener;
 
@@ -33,7 +33,7 @@ public class GeneticAlgorhitmPerformer {
 		do {
 			listener.newGenerationData(genData);
 			try {
-				Thread.sleep(100);
+				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
